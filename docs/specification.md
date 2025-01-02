@@ -1668,6 +1668,101 @@ Blockquotes contain literal text.
 
 </details>
 
+Consecutive paragraphs are concatenated with newline characters.
+
+[testmark]:# (1.2.3.b. arrange)
+```markdown
+- John
+  - description
+    - > John Winston Ono Lennon was an English singer-songwriter.
+      >
+      > Born in Liverpool, Lennon became involved in the skiffle craze.
+```
+
+<details><summary><code>text/turtle</code></summary>
+
+[testmark]:# (1.2.3.b. assert-graph)
+```turtle
+@prefix : <http://example.org/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+[] rdfs:label "John" ;
+    :description "John Winston Ono Lennon was an English singer-songwriter.\nBorn in Liverpool, Lennon became involved in the skiffle craze." .
+```
+
+</details>
+
+<details><summary><code>application/ld+json</code></summary>
+
+[testmark]:# (1.2.3.b. assert-json)
+```json
+{
+  "@context": [
+    {
+      "@version": 1.1,
+      "dcmitype": "http://purl.org/dc/dcmitype/",
+      "dcterms": "http://purl.org/dc/terms/",
+      "owl": "http://www.w3.org/2002/07/owl#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "schema": "https://schema.org/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "_Dataset": {
+        "@id": "dcmitype:Dataset"
+      },
+      "_HTML": {
+        "@id": "rdf:HTML"
+      },
+      "_Image": {
+        "@id": "dcmitype:Image"
+      },
+      "_Table": {
+        "@id": "schema:Table"
+      },
+      "_Text": {
+        "@id": "dcmitype:Text"
+      },
+      "_boolean": {
+        "@id": "xsd:boolean"
+      },
+      "_content": {
+        "@id": "rdf:value"
+      },
+      "_format": {
+        "@id": "dcterms:format"
+      },
+      "_label": {
+        "@id": "rdfs:label"
+      },
+      "_sameAs": {
+        "@id": "owl:sameAs",
+        "@container": "@set"
+      },
+      "_seeAlso": {
+        "@id": "rdfs:seeAlso",
+        "@container": "@set"
+      }
+    },
+    {
+      "@base": "http://example.org/",
+      "@vocab": "http://example.org/terms/"
+    }
+  ],
+  "@graph": [
+    {
+      "_label": "John",
+      "description": [
+        {
+          "@value": "John Winston Ono Lennon was an English singer-songwriter.\nBorn in Liverpool, Lennon became involved in the skiffle craze."
+        }
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
 ##### 1.2.3.1. Identified
 
 A preceding sibling hyperlink identifies the blockquote.
@@ -2431,6 +2526,8 @@ An arbitrary datatype may be given.
     - > 1940-10-09 `date`
 ```
 
+<details><summary><code>text/turtle</code></summary>
+
 [testmark]:# (1.2.3.6.a. assert-graph)
 ```turtle
 @prefix exterms: <http://example.org/terms/> .
@@ -2439,6 +2536,10 @@ An arbitrary datatype may be given.
 [] rdfs:label "John" ;
     exterms:date%20of%20birth "1940-10-09"^^exterms:date .
 ```
+
+</details>
+
+<details><summary><code>application/ld+json</code></summary>
 
 [testmark]:# (1.2.3.6.a. assert-json)
 ```json
@@ -2507,6 +2608,8 @@ An arbitrary datatype may be given.
   ]
 }
 ```
+
+</details>
 
 A datatype may be given as a code-fenced reference to a defined term.
 
