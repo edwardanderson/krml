@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.2
+
+- Fix handling of consecutive paragraphs
+- Fix specification formatting where some `<details/>` elements were missing
+
 ## 3.1.1
 
 - Fix code to pass test 2.6.a

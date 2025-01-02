@@ -19,14 +19,24 @@
         </xsl:if>
         <!-- Cast content to number or string -->
         <xsl:choose>
-            <xsl:when test="number(text())">
+            <xsl:when test="not(*) and number(text())">
                 <number key="@value">
                     <xsl:value-of select="text()"/>
                 </number>
             </xsl:when>
             <xsl:otherwise>
                 <string key="@value">
-                    <xsl:value-of select="text()"/>
+                    <xsl:for-each select="node()">
+                        <xsl:choose>
+                            <!-- If the node is a <br/>, output a newline character -->
+                            <xsl:when test="self::br">
+                                <xsl:text>&#10;</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
                 </string>
             </xsl:otherwise>
         </xsl:choose>
