@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.3
+
+- Add missing lookup for overloaded hyperlink `title` attribute value against a definition list
+
 ## 3.1.2
 
 - Fix handling of consecutive paragraphs

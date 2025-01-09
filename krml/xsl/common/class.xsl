@@ -29,8 +29,16 @@
     </xsl:template>
 
     <xsl:template match="@title">
+        <xsl:variable name="value" select="."/>
         <string>
-            <xsl:value-of select="."/>
+            <xsl:choose>
+                <xsl:when test="$value = /document/dl/dt/text()">
+                    <xsl:value-of select="encode-for-uri($value)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$value"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </string>
     </xsl:template>
 
