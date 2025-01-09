@@ -43,7 +43,7 @@ author: Edward Anderson
 
 This document specifies the Knowledge Representation Markup Language (KRML). It includes [go-testmark](https://github.com/warpfork/go-testmark) integration test fixtures, with input scenarios each accompanied by an expected Turtle graph shape and an expected JSON-LD serialisation.
 
-A KRML document is a plain-text Markdown document that complies with the following conventions for structure format and syntax.
+A KRML document is a plain-text Markdown document that complies with the following conventions for structure, format and syntax.
 
 ## 1. Body
 
